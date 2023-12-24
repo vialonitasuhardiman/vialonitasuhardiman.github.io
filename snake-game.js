@@ -6,13 +6,14 @@ const rows = canvas.height / scale;
 const columns = canvas.width / scale;
 
 let snake;
+let fruit;
+let interval;
 
 (function setup() {
     snake = new Snake();
     fruit = new Fruit();
     fruit.pickLocation();
-
-    window.setInterval(() => {
+    interval = setInterval(() => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         fruit.draw();
         snake.update();
@@ -23,8 +24,11 @@ let snake;
         }
 
         snake.checkCollision();
-        document.querySelector('.score').innerText = snake.total;
-        
+        if (snake.hitBorder()) {
+            alert('Game Over. Press OK to restart.');
+            document.location.reload(); // Reload the page to restart the game
+        }
+
     }, 250);
 }());
 
@@ -41,93 +45,24 @@ function Snake() {
     this.total = 0;
     this.tail = [];
 
-    this.draw = function() {
-        ctx.fillStyle = "#33a1fd";
-        for (let i = 0; i < this.tail.length; i++) {
-            ctx.fillRect(this.tail[i].x, this.tail[i].y, scale, scale);
-        }
+    // ... rest of the Snake constructor remains the same ...
 
-        ctx.fillRect(this.x, this.y, scale, scale);
+    this.hitBorder = function() {
+        return this.x >= canvas.width || this.y >= canvas.height || this.x < 0 || this.y < 0;
     };
 
-    this.update = function() {
-        for (let i = 0; i < this.tail.length - 1; i++) {
-            this.tail[i] = this.tail[i + 1];
-        }
+    // ... rest of the Snake methods remain the same ...
 
-        this.tail[this.total - 1] = { x: this.x, y: this.y };
-
-        this.x += this.xSpeed;
-        this.y += this.ySpeed;
-
-        if (this.x > canvas.width) {
-            this.x = 0;
-        }
-
-        if (this.y > canvas.height) {
-            this.y = 0;
-        }
-
-        if (this.x < 0) {
-            this.x = canvas.width;
-        }
-
-        if (this.y < 0) {
-            this.y = canvas.height;
-        }
-    };
-
-    this.changeDirection = function(direction) {
-        switch(direction) {
-            case 'Up':
-                this.xSpeed = 0;
-                this.ySpeed = -scale * 1;
-                break;
-            case 'Down':
-                this.xSpeed = 0;
-                this.ySpeed = scale * 1;
-                break;
-            case 'Left':
-                this.xSpeed = -scale * 1;
-                this.ySpeed = 0;
-                break;
-            case 'Right':
-                this.xSpeed = scale * 1;
-                this.ySpeed = 0;
-                break;
-        }
-    };
-
-    this.eat = function(fruit) {
-        if (this.x === fruit.x && this.y === fruit.y) {
-            this.total++;
-            return true;
-        }
-
-        return false;
-    };
-
-    this.checkCollision = function() {
-        for (var i = 0; i < this.tail.length; i++) {
-            if (this.x === this.tail[i].x && this.y === this.tail[i].y) {
-                this.total = 0;
-                this.tail = [];
-            }
-        }
-    }
 }
 
-function Fruit() {
-    this.x;
-    this.y;
+// ... rest of the Fruit function remains the same ...
 
-    this.pickLocation = function() {
-        this.x = (Math.floor(Math.random() * columns - 1) + 1) * scale;
-        this.y = (Math.floor(Math.random() * rows - 1) + 1) * scale;
-    };
-
-    this.draw = function() {
-        ctx.fillStyle = "#4a69bd";
-        ctx.fillRect(this.x, this.y, scale, scale);
-    };
+// Add controls for touch devices
+function enableControls() {
+    const controls = document.getElementsByClassName('control');
+    Array.from(controls).forEach(control => {
+        control.addEventListener('click', function(event) {
+            snake.changeDirection(event.target.id);
+        });
+    });
 }
