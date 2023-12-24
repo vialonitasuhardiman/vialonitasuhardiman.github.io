@@ -1,37 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gabriel's Pen Hobbies - Game Section</title>
-    <style>
-        body {
-            background-color: #f5f5f5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .game-container {
-            position: relative;
-            width: 400px;
-            height: 400px;
-            border: 1px solid #000;
-            background-color: #ffffff;
-        }
-        canvas {
-            display: block;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Snake Game</title>
+<link rel="stylesheet" href="styles.css">
+<script defer src="script.js"></script>
 </head>
 <body>
-
 <div class="game-container">
-    <canvas id="gameCanvas" width="400" height="400"></canvas>
+<canvas id="gameCanvas" width="400" height="400"></canvas>
 </div>
-
-<script src="snake-game.js"></script>
-
+<div id="loseScreen" class="hidden">
+<p>Game Over!</p>
+<button id="restartButton">Restart</button>
+</div>
+<script>
+  // This script will execute when the entire page is loaded
+  window.onload = function() {
+    initSnakeGame();
+  };
+</script>
 </body>
 </html>
