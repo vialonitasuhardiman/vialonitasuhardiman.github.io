@@ -4,22 +4,41 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Snake Game</title>
-<link rel="stylesheet" href="styles.css">
-<script defer src="script.js"></script>
+<style>
+  body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+  }
+
+  .game-container {
+    position: relative;
+  }
+
+  #gameCanvas {
+    border: 1px solid black;
+  }
+
+  #loseScreen {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+</style>
 </head>
 <body>
 <div class="game-container">
-<canvas id="gameCanvas" width="400" height="400"></canvas>
-</div>
-<div id="loseScreen" class="hidden">
-<p>Game Over!</p>
-<button id="restartButton">Restart</button>
-</div>
-<script>
-  // This script will execute when the entire page is loaded
-  window.onload = function() {
-    initSnakeGame();
-  };
-</script>
-</body>
-</html>
+  <canvas id="gameCanvas" width="400" height="400"></canvas>
+  <div id="loseScreen" class="
