@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChatGPT Clone</title>
+  <link rel="stylesheet" href="susan.css">
+</head>
+<body>
+
+<div id="chat-container"></div>
+
+<div id="input-container">
+  <input type="text" id="user-input" placeholder="Type your message...">
+  <button onclick="sendMessage()">Send</button>
+</div>
+
+<script>
+  function sendMessage() {
+    const userInput = document.getElementById('user-input').value;
+    appendMessage('user', userInput);
+
+    // Replace with actual API endpoint
+    const apiEndpoint = 'YOUR_API_ENDPOINT';
+    
+    // Example using fetch to send user message to the API
+    fetch(apiEndpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ message: userInput }),
+    })
+    .then(response => response.json())
+    .then(data => {
+      const botResponse = data.message; // Adjust according to your API response structure
+      appendMessage('bot', botResponse);
+    })
+    .catch(error => {
+      console.error('Error sending message to API:', error);
+    });
+  }
+
+  function appendMessage(sender, message) {
+    const chatContainer = document.getElementById('chat-container');
+    const messageElement = document.createElement('div');
+    messageElement.textContent = `${sender}: ${message}`;
+    chatContainer.appendChild(messageElement);
+  }
+</script>
+
+</body>
+</html>
