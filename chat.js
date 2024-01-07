@@ -15,7 +15,7 @@ function sendMessage() {
     },
     body: JSON.stringify({
       prompt: userInput,
-      max_tokens: 150, // Adjust as needed
+      max_tokens: 4000, // Adjust as needed
       engine: 'gpt-3.5-turbo-1106', // GPT-3.5 Turbo engine
     }),
   })
