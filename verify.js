@@ -8,5 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
         else if (userInput === '0112') {
             window.location.href = 'yozb5yc3CkjUkGQxvU2KKjKf9vvTT50fRJCRFRxC6ww9nlWtIp1kzP01kSDQ1GEl.html';
         }
+        else {
+            console.log("wrong password");
+        }
     });
 });
