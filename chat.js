@@ -1,7 +1,7 @@
 // chat.js
 
-const apiEndpoint = 'https://ai.liaobots.work/v1/chat/completions'; // Update with the correct GPT-3.5 Turbo engine endpoint
-const apiKey = 'WjzysF1uyIW9Z';
+const apiEndpoint = ''; // Update with the correct GPT-3.5 Turbo engine endpoint
+const apiKey = '';
 
 function sendMessage() {
   const userInput = document.getElementById('user-input').value;
