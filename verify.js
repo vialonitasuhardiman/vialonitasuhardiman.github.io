@@ -10,6 +10,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         else {
             console.log("wrong password");
+            window.onload = function() {
+                document.write("Hello, world!");
+};
+
         }
     });
 });
