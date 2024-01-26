@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         else {
             console.log("wrong password");
-            window.alert("Wrong verification code")
+            window.alert("Wrong verification code !")
 
         }
     });
