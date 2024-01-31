@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
 
+/* Default styles for PC screens */
 .calculator {
     padding: 10px;
     border-radius: 1em;
@@ -9,6 +10,15 @@
     background-color: #191b28;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
+
+/* Styles for smaller screens (e.g., mobile devices) */
+@media (max-width: 768px) {
+    .calculator {
+        width: 80%; /* Adjust the width for smaller screens */
+        height: auto; /* Let the height adjust based on content */
+    }
+}
+
 
 .display-box {
     font-family: 'Orbitron', sans-serif;
