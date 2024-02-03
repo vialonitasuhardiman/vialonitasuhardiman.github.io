@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => {
                 const endTime = performance.now();
                 const duration = (endTime - startTime) / 1000; // Convert to seconds
-                const downloadSpeed = (fileSize / duration) * 8 / 1e6; // Mbps
+                const downloadSpeed = (fileSize / duration) / 1e6; // MBps
 
                 resultText.textContent = `Download Speed: ${downloadSpeed.toFixed(2)} Mbps`;
             })
