@@ -22,6 +22,18 @@
     const iframe = document.querySelector('iframe');
     iframe.width = window.innerWidth;
     iframe.height = window.innerHeight;
+
+    // Modify the iframe's src attribute to use the proxy URL for all links
+    const proxyUrl = 'https://api.allorigins.win/raw?url=';
+    const iframeDoc = iframe.contentDocument;
+    const links = iframeDoc.querySelectorAll('a');
+
+    links.forEach(link => {
+      const href = link.getAttribute('href');
+      if (href.startsWith('http')) {
+        link.setAttribute('href', proxyUrl + href);
+      }
+    });
   </script>
 </body>
 </html>
